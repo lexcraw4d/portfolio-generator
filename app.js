@@ -1,7 +1,7 @@
-// const fs = require('fs');
+const fs = require('fs');
 const inquirer = require('inquirer');
 
-// const generatePage = require('./src/page-template.js');
+const generatePage = require('./src/page-template.js');
 
 // fs.writeFile('./index.html', generatePage(name, github), (err) => {
 // 	if (err) throw new Error(err);
@@ -40,20 +40,20 @@ const promptUser = () => {
 			type: 'confirm',
 			name: 'confirmAbout',
 			message: 'Would you like to enter some information about yourself for an "About" section?',
-			default: true
-		  },
-		  {
+			default: true,
+		},
+		{
 			type: 'input',
 			name: 'about',
 			message: 'Provide some information about yourself:',
 			when: ({ confirmAbout }) => {
-			  if (confirmAbout) {
-				return true;
-			  } else {
-				return false;
-			  }
-			}
-		  }
+				if (confirmAbout) {
+					return true;
+				} else {
+					return false;
+				}
+			},
+		},
 	]);
 };
 const promptProject = (portfolioData) => {
@@ -140,11 +140,17 @@ const promptProject = (portfolioData) => {
 promptUser()
 	.then(promptProject)
 	.then((portfolioData) => {
-		console.log(portfolioData);
-		// will be uncommented in lesson 4
-		// const pageHTML = generatePage(portfolioData);
+		const pageHTML = generatePage(portfolioData);
+
 		// fs.writeFile('./index.html', pageHTML, err => {
 		//   if (err) throw new Error(err);
+
 		//   console.log('Page created! Check out index.html in this directory to see it!');
 		// });
 	});
+// will be uncommented in lesson 4
+// const pageHTML = generatePage(portfolioData);
+// fs.writeFile('./index.html', pageHTML, err => {
+//   if (err) throw new Error(err);
+//   console.log('Page created! Check out index.html in this directory to see it!');
+// });
