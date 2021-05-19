@@ -1,5 +1,6 @@
 // create the about section
 const generateAbout = (aboutText) => {
+  console.log(aboutText)
 	if (!aboutText) {
 		return '';
 	}
@@ -56,7 +57,9 @@ const generateProjects = projectsArr => {
 
 module.exports = (templateData) => {
 	// destructure page data by section
+  //header spreads the remaining contents of the templateData passed aka (portfolioData from app.js)
 	const { projects, about, ...header } = templateData;
+
 
 	return `
   <!DOCTYPE html>
